@@ -35,14 +35,15 @@ for i in arr:
         nch.append(i)
 print(min(nch))
 # 12_2
+print("###############################")
 arr1 = [x for x in range(10)]
 for i in arr1:
     arr1[arr1.index(i)] = random.randint(1,1000)
-print(arr1)
+print("arr1" , arr1)
 arr2 = [x for x in range(10)]
 for i in arr2:
     arr2[arr2.index(i)] = random.randint(1,1000)
-print(arr2)
+print("arr2", arr2)
 tmp = arr1
 arr1 = arr2
 arr2 = tmp
