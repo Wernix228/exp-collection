@@ -9,7 +9,8 @@ def get_repo_data():
         messagebox.showerror("Ошибка", "Введите имя репозитория в формате owner/repo")
         return
 
-    url = f"https://api.github.com/repos/{repo_name}"
+    url = f"https://api.github.com/users/{repo_name}"
+    #url = f"https://api.github.com/repos/{repo_name}"
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -17,9 +18,10 @@ def get_repo_data():
 
         # Выбираем нужные поля
         fields = ['company', 'created_at', 'email', 'id', 'name', 'url']
+
         selected_data = {field: data.get(field) for field in fields}
 
-        filename = f"{repo_name.replace('/', '_')}_info.json"
+        filename = f"{repo_name.replace('/', ' ')}_info.json"
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(selected_data, f, ensure_ascii=False, indent=4)
 
@@ -32,7 +34,8 @@ def get_repo_data():
 root = tk.Tk()
 root.title("GitHub Repo Info")
 
-tk.Label(root, text="Введите имя репозитория (owner/repo):").pack(padx=10, pady=5)
+tk.Label(root, text="Введите пользователя (owner):").pack(padx=10, pady=5)
+# tk.Label(root, text="Введите имя репозитория (owner/repo):").pack(padx=10, pady=5)
 entry = tk.Entry(root, width=50)
 entry.pack(padx=10, pady=5)
 btn = tk.Button(root, text="Получить данные", command=get_repo_data)
